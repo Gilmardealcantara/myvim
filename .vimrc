@@ -17,9 +17,8 @@ nnoremap <C-Left> <C-W><C-H>
 Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-scripts/ctags.vim'
 "Plugin 'scrooloose/syntastic'
-"Plugin 'vim-syntastic/syntastic'
-"Plugin 'maralla/validator.vim' // compile vim with python 3 =(
 Plugin 'vim-syntastic/syntastic'
+"Plugin 'maralla/validator.vim' // compile vim with python 3 =(
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -28,25 +27,27 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/Conque-GDB'
 "Plugin 'vim-scripts/indentpython.vim'
 
+
 map <C-b> :NERDTreeToggle<CR>
 map <C-d> :q<CR>
 map <C-k> :ConqueGdb <Enter> make program <Enter> 
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.o$']
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.o$', 'tags']
 map <F5> <ESC>:!ctags -R --extra=+fq --c-kinds=+px --fields=+iaS .<cr><cr>
 
-colorscheme koehler
-set cursorline
-hi CursorLine   cterm=NONE ctermbg=black  guibg=darkred
-
 "syntatic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 0
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_check_on_w = 0
+"let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+map <C-l> :SyntasticCheck<CR>
 "Identation
 " by default, the indent is 2 spaces. 
 set ai
@@ -71,3 +72,9 @@ autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 "https://valloric.github.io/YouCompleteMe/#ubuntu-linux-x64
 "http://www.alexeyshmalko.com/2014/youcompleteme-ultimate-autocomplete-plugin-for-vim/
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+
+colorscheme koehler
+set cursorline
+hi CursorLine   cterm=NONE ctermbg=black  guibg=darkred
+
+
