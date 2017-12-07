@@ -26,7 +26,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/Conque-GDB'
 "Plugin 'vim-scripts/indentpython.vim'
-
+Plugin 'joshdick/onedark.vim'
 
 map <C-b> :NERDTreeToggle<CR>
 map <C-d> :q<CR>
@@ -73,7 +73,7 @@ autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 "http://www.alexeyshmalko.com/2014/youcompleteme-ultimate-autocomplete-plugin-for-vim/
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
-colorscheme koehler
+colorscheme onedark
 set cursorline
 hi CursorLine   cterm=NONE ctermbg=black  guibg=darkred
 
