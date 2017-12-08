@@ -73,7 +73,6 @@ autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 "complete 
 "https://valloric.github.io/YouCompleteMe/#ubuntu-linux-x64
 "http://www.alexeyshmalko.com/2014/youcompleteme-ultimate-autocomplete-plugin-for-vim/
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 set cursorline
 hi CursorLine   cterm=NONE ctermbg=black  guibg=darkred
