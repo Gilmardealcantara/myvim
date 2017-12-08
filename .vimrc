@@ -31,9 +31,12 @@ Plugin 'MaxSt/FlatColor'
 Plugin 'itchyny/lightline.vim'
 
 map <C-b> :NERDTreeToggle<CR>
-map <C-d> :q<CR>
-map <C-k> :ConqueGdb <Enter> make program <Enter> 
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.o$', 'tags']
+autocmd vimenter * NERDTree
+let g:NERDTreeWinSize=20 
+
+map <C-d> :q<CR>
+" map <C-k> :ConqueGdb <Enter> make program <Enter> 
 map <F5> <ESC>:!ctags -R --extra=+fq --c-kinds=+px --fields=+iaS .<cr><cr>
 
 "syntatic
