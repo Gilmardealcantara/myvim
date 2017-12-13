@@ -54,20 +54,22 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 map <C-l> :SyntasticCheck<CR>
 
 "Identation
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 | 
-    \ set softtabstop=4 | 
-    \ set shiftwidth=4 | 
-    \ set textwidth=79 | 
-    \ set expandtab | 
-    \ set autoindent | 
+" by default, the indent is 2 spaces. 
+set ai
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+au FileType python
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab | "change tabs to spaces
+    \ set autoindent |
     \ set fileformat=unix
 
-
-au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2 | 
-    \ set softtabstop=2 | 
-    \ set shiftwidth=2  
+"see tabs and spaces
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+"set list 
 
 " Enable folding
 set foldmethod=indent
