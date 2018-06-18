@@ -2,10 +2,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 call vundle#end()            " required
 
+" reload files 'r' or 'R' root folder
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 syntax on
 set ai
+set title
 set nu
 set encoding=utf-8
 
@@ -28,10 +30,15 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'joshdick/onedark.vim'
 Plugin 'MaxSt/FlatColor'
 Plugin 'itchyny/lightline.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'tell-k/vim-autopep8'
 
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:syntastic_javascript_checkers = ['eslint']
 
 map <C-b> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.o$', 'tags']
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.o$', 'tags', '__pycache__']
 "autocmd vimenter * NERDTree
 let g:NERDTreeWinSize=20 
 
@@ -50,6 +57,7 @@ map <F5> <ESC>:!ctags -R --extra=+fq --c-kinds=+px --fields=+iaS .<cr><cr>
 "let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
+"confere sintaxe quando controlL"
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 map <C-l> :SyntasticCheck<CR>
 
@@ -59,6 +67,13 @@ set ai
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
+
+	"conver space to tab
+":set tabstop=2      " To match the sample file
+":set noexpandtab    " Use tabs, not spaces
+":%retab!            " Retabulate the whole file
+	"convert all tabs in spaces
+":retab
 
 au FileType python
     \ set shiftwidth=4 |
@@ -76,14 +91,14 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
-autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype html setlocal ts=2 sw=2  sts=2 expandtab
+autocmd Filetype ruby setlocal ts=2 sw=2 sts=2 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
 autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 
 set cursorline
-hi CursorLine   cterm=NONE ctermbg=black  guibg=darkred
+hi CursorLine   cterm=NONE ctermbg=grey
 
 if has('nvim') || has('termguicolors')
   set termguicolors
@@ -92,4 +107,13 @@ endif
 colorscheme onedark
 " colorscheme flatcolor
 
+"" Tentativa falha de PEP8
+"autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+"let g:autopep8_ignore="E501,W293"
+"let g:autopep8_select="E501,W293"
+"let g:autopep8_pep8_passes=100
+"let g:autopep8_max_line_length=79
+" let g:autopep8_indent_size=2
+"let g:autopep8_disable_show_diff=1
+"autocmd FileType python set equalprg=autopep8\ -
 
