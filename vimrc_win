@@ -21,11 +21,14 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'pangloss/vim-javascript'
 Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'Townk/vim-autoclose'
+Plugin 'alvan/vim-closetag'
+Plugin 'OrangeT/vim-csharp'
 
 map <C-b> :NERDTreeToggle<CR>
-let NERDTreeIgnore=['__pycache__', '\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.o$', 'tags', 'node_modules']
+let NERDTreeIgnore=['__pycache__', '\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr', '\.o$', '\tags', '\node_modules']
 "autocmd vimenter * NERDTree
-let g:NERDTreeWinSize=20 
+"let g:NERDTreeWinSize=20 
 
 
 let g:lightline = {
@@ -49,6 +52,11 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 
+let g:ctrlp_prompt_mappings = {
+	\ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
+
 filetype plugin indent on
 syntax on
 set ai
@@ -57,6 +65,19 @@ set incsearch
 set relativenumber
 set hlsearch
 set encoding=utf-8
+set backspace=2
+set backspace=indent,eol,start
+set gfn=IBM_Plex_Mono:h10:cANSI:qDRAFT
+"set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+
+nnoremap <A-Up> :m-2<CR>
+nnoremap <A-Down> :m+<CR>
+inoremap <A-Up> <Esc>:m-2<CR>
+inoremap <A-Down> <Esc>:m+<CR>
 
 "Identation
 " by default, the indent is 2 spaces. 
@@ -84,7 +105,7 @@ set nowrap
 
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
-autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 
@@ -93,7 +114,7 @@ hi CursorLine   cterm=NONE ctermbg=white ctermfg=white
 
 colorscheme onedark
 if has('nvim') || has('termguicolors')
-	 set termguicolors
+	set termguicolors
 endif
 
 "colorscheme flatcolor
